@@ -4,8 +4,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechNova Annual Tech Trends Conference</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+    #message {
+    font-size: 2rem;            
+    font-weight: 700;          
+    color: var(--primary-color); 
+    text-align: center;         
+    margin-top: 30px;           
+    padding: 20px;             
+    background: #1f1f1f24; 
+    border-radius: 10px;        
+    max-width: 600px;           
+    margin: 30px auto;          
+}
+    </style>
+
 </head>
 <body>
+   
     <div class="container">
         <div class="header">ANNUAL TECH TREND IS BACK!</div>
         <div class="subheader">TECH NOVA IS ORGANISING THE ANNUAL TECH TREND CONFERENCE THIS FEB!</div>
@@ -31,28 +47,63 @@
         <h1>TECHNOVA</h1>
         <p>JOIN US FOR A DAY OF NETWORKING, LEARNING, AND FUN AS WE EXPLORE THE LATEST TRENDS IN TECHNOLOGY AND INNOVATION.</p>
         <h2>START YOUR SUCCESS TODAY!</h2>
-
+        <h2 id="end-date">15 March 2025</h2>
         <div class="countdown">
             <div>
-                <h3>02</h3>
+                <h3 id ="first">02</h3>
                 <p>DAYS</p>
             </div>
             <div>
-                <h3>02</h3>
+                <h3 id="second">45</h3>
                 <p>HOURS</p>
             </div>
             <div>
-                <h3>45</h3>
+                <h3 id ="third">45</h3>
                 <p>MINUTES</p>
             </div>
             <div>
-                <h3>45</h3>
+                <h3 id ="fourth">45</h3>
                 <p>SECONDS</p>
-            </div>
+            </div> 
         </div>
-
+        <div id="message"></div>
         <p>Stay Tuned</p>
         <button class="register-btn"   onclick="window.location.href='https://forms.gle/MHkfg7eFDrMn8gA76';">REGISTER NOW  </button>
     </div>
+    <script>
+   const endDate = "15 March 2025 10:00 AM"
+   document.getElementById("end-date").innerText=endDate;
+
+    const firstH3 = document.getElementById("first");
+    const secondH3 = document.getElementById("second");
+    const thirdH3 = document.getElementById("third");
+    const fourthH3 = document.getElementById("fourth");
+
+    let Timer;
+    function clock (){
+    const end = new Date(endDate)
+    const now = new Date ()
+    const diff = (end - now)/1000;
+    console.log(diff);
+
+    if (diff <= 0) {
+    clearInterval(Timer); 
+    setTimeout(function(){
+    document.getElementById("message").textContent = "The conference is live now!";
+    firstH3.textContent = 0;
+    secondH3.textContent = 0;
+    thirdH3.textContent = 0;
+    fourthH3.textContent = 0;
+    },100)
+    return;
+  }
+    firstH3.textContent = Math.floor(diff/3600/24);
+    secondH3.textContent = Math.floor((diff/3600)%24);
+    thirdH3.textContent = Math.floor((diff/60)%60);
+    fourthH3.textContent = Math.floor((diff)%60);
+   }
+   clock()
+   Timer =setInterval(clock,1000);
+    </script>
 </body>
 </html>
